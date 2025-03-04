@@ -28,7 +28,6 @@ workflow quantification {
         Int rnaseqc_disk
 
         #aggregate
-        Array[File] counts
         Int aggregate_disk
 
         #intersect_gtf
