@@ -54,7 +54,7 @@ workflow quantification {
     call aggregate {
         input:
             SID=SID,
-            counts=counts,
+            counts=rnaseqc.gene_counts,
             disk_space=aggregate_disk
     }
 
