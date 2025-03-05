@@ -1,0 +1,25 @@
+version: 1.2 # The .dockstore.yml schema version
+workflows:
+  - subclass: WDL
+    primaryDescriptorPath: workflows/quantification.wdl 
+author: "Alexander Miller"
+homepage: "https://github.com/GREGoR-Stanford-Site/GSS-Quantification"
+inputs:
+  - name: "SID"
+    type: "Array[String]"
+    description: "Array of sample IDs"
+  - name: "GTF"
+    type: "Array[File]"
+    description: "Array of GTF files"
+  - name: "BAM"
+    type: "Array[File]"
+    description: "Array of BAM files"
+  - name: "rnaseqc_disk"
+    type: "Int"
+    description: "disk space for rnaseqc task"
+  - name: "aggregate_disk"
+    type: "Int"
+    description: "disk space for aggregate task"
+  - name: "intersect_disk"
+    type: "Int"
+    description: "disk space for intersect task"
