@@ -1,0 +1,36 @@
+# Ignore WDL workflow outputs
+*.out
+*.json
+*.txt
+*.tsv
+
+# Ignore temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Ignore specific WDL files
+# This is optional if you want to exclude certain WDL scripts
+# workflow_output/*.wdl
+# tasks/*.wdl
+
+# Ignore any directories that contain large output files
+output/
+results/
+
+# Ignore Conda or other environment files
+.conda/
+.env/
+venv/
+
+# Ignore editor and IDE files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
