@@ -43,4 +43,14 @@ task intersect_gtf {
         disks: "local-disk ${disk_space} HDD"
         cpu: "1"
     }
+
+    parameter_meta {
+        gtf_files: {
+            label: "Array of paths to GTF-Format Annotation Files used for each alignment."
+        }
+    }
+
+    meta {
+        author: "Alexander Miller"
+    }
 }
