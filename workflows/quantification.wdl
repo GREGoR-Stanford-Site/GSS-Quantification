@@ -14,6 +14,10 @@ workflow quantification {
             aggregate: {
                 task_name: "aggregate",
                 description: "Aggregate RNASeQC-2 counts into a table"
+            },
+            intersect_gtf: {
+                task_name: "intersect_gtf",
+                description: "Uses bedtools intersect to return a bed file with the common gene set between all the gtfs used for quantification"
             }
         }
     }
