@@ -38,14 +38,14 @@ workflow quantification {
         Int intersect_disk
     }
 
-    call intersect_gtf {
+    call intersect_gtf.intersect_gtf {
         input:
             gtf_files=GTF,
             disk_space=intersect_disk
     }
 
     scatter (i in range(length(BAM))) {
-        call rnaseqc {
+        call rnaseqc.RNASeQC {
             input:
                 SID=SID[i],
                 input_bam=BAM[i],
@@ -54,7 +54,7 @@ workflow quantification {
         }
     }
 
-    call aggregate {
+    call aggregate.aggregate {
         input:
             SID=SID,
             counts=rnaseqc.gene_counts,
