@@ -58,6 +58,7 @@ workflow quantification {
         input:
             SID=SID,
             counts=RNASeQC.gene_counts,
+            bed=intersect_gtf.intersected_bed,
             disk_space=aggregate_disk
     }
 
