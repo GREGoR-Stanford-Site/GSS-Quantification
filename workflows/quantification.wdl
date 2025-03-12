@@ -40,7 +40,7 @@ workflow quantification {
 
     call intersect_gtf {
         input:
-            gtf_files=GTF
+            gtf_files=GTF,
             disk_space=intersect_disk
     }
 
