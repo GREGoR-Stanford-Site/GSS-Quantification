@@ -16,7 +16,7 @@ task aggregate {
     >>>
 
     output {
-        counts_matrix = "counts_table.tsv"        
+        File counts_matrix = "counts_table.tsv"        
     }
 
     runtime {
