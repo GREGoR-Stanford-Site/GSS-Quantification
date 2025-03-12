@@ -62,7 +62,7 @@ workflow quantification {
     }
 
     output {
-        counts_matrix = aggregate.counts_matrix
-        intersected_bed = intersect_gtf.intersected_bed
+        File counts_matrix = aggregate.counts_matrix
+        File intersected_bed = intersect_gtf.intersected_bed
     }
 }
