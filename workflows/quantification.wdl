@@ -25,10 +25,10 @@ workflow quantification {
 
     input {
         #All
-        Array[String+] SID
-        Array[File+] GTF
-        Array[File+] BAM
-        Array[String+] suffix #to delineate between CRAM and BAM
+        Array[String]+ SID
+        Array[File]+ GTF
+        Array[File]+ BAM
+        Array[String]+ suffix #to delineate between CRAM and BAM
         
         #RNASeQC input
         Int rnaseqc_disk
