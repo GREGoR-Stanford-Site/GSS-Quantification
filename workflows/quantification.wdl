@@ -80,7 +80,7 @@ workflow quantification {
         }
     }
 
-    Array[File] gene_counts = flatten([rnaseqc_cram.gene_counts, rnaseqc_bam.gene_counts]) 
+    Array[File] gene_counts = flatten([select_all(rnaseqc_cram.gene_counts), select_all(rnaseqc_bam.gene_counts)]) 
 
     call aggregate.aggregate {
         input:
