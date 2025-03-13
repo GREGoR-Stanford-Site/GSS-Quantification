@@ -3,6 +3,7 @@ version 1.0
 import "../modules/rnaseqc.wdl" as rnaseqc
 import "../modules/aggregate_counts.wdl" as aggregate
 import "../modules/intersect_gtf.wdl" as intersect_gtf
+import "../modules/cram_to_bam.wdl" as cram_to_bam
 
 workflow quantification {
     meta {
@@ -26,10 +27,15 @@ workflow quantification {
         #All
         Array[String] SID
         Array[File] GTF
+        Array[File] BAM
+        Array[String] suffix #to delineate between CRAM and BAM
         
         #RNASeQC input
-        Array[File] BAM
         Int rnaseqc_disk
+
+        #cram_to_bam
+        File reference_fa
+        Int cram_to_bam_disk
 
         #aggregate
         Int aggregate_disk
@@ -45,12 +51,33 @@ workflow quantification {
     }
 
     scatter (i in range(length(BAM))) {
-        call rnaseqc.RNASeQC {
-            input:
-                SID=SID[i],
-                input_bam=BAM[i],
-                gtf_file=GTF[i],
-                disk_space=rnaseqc_disk
+        if (suffix[i]=="CRAM") {
+            call cram_to_bam.cram_to_bam {
+                input:
+                    SID=SID[i],
+                    input_cram=BAM[i],
+                    reference_fa=reference_fa,
+                    disk_space=cram_to_bam_disk
+            } 
+
+            call rnaseqc.RNASeQC {
+                input:
+                    SID=SID[i],
+                    input_bam=cram_to_bam.bam,
+                    gtf_file=GTF[i],
+                    disk_space=rnaseqc_disk
+            }
+        }
+
+        if (suffix[i]=="BAM") {
+            call rnaseqc.RNASeQC {
+                input:
+                    SID=SID[i],
+                    input_bam=BAM[i],
+                    gtf_file=GTF[i],
+                    disk_space=rnaseqc_disk
+            }
+
         }
     }
 
