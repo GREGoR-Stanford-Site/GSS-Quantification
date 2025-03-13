@@ -60,7 +60,7 @@ workflow quantification {
                     disk_space=cram_to_bam_disk
             } 
 
-            call rnaseqc.RNASeQC {
+            call rnaseqc.RNASeQC as rnaseqc_cram {
                 input:
                     SID=SID[i],
                     input_bam=cram_to_bam.bam,
@@ -70,21 +70,22 @@ workflow quantification {
         }
 
         if (suffix[i]=="BAM") {
-            call rnaseqc.RNASeQC {
+            call rnaseqc.RNASeQC as rnaseqc_bam {
                 input:
                     SID=SID[i],
                     input_bam=BAM[i],
                     gtf_file=GTF[i],
                     disk_space=rnaseqc_disk
             }
-
         }
     }
+
+    Array[File] gene_counts = flatten([rnaseqc_cram.gene_counts, rnaseqc_bam.gene_counts]) 
 
     call aggregate.aggregate {
         input:
             SID=SID,
-            counts=RNASeQC.gene_counts,
+            counts=gene_counts,
             bed=intersect_gtf.intersected_bed,
             disk_space=aggregate_disk
     }
