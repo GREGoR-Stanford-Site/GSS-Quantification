@@ -24,7 +24,7 @@ task RNASeQC {
     runtime {
         docker: "gcr.io/broad-cga-aarong-gtex/rnaseqc:latest"
         memory: "40GB"
-        disks: "local-disk ${disk_space} HDD"
+        disks: "local-disk ~{disk_space} HDD"
         cpu: "1"
     }
 

@@ -22,7 +22,7 @@ task aggregate {
     runtime {
         docker: "quay.io/biocontainers/pandas"
         memory: "100GB"
-        disks: "local-disk ${disk_space} HDD"
+        disks: "local-disk ~{disk_space} HDD"
         cpus: "1"
     }
 
