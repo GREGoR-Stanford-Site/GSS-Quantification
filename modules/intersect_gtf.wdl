@@ -10,14 +10,14 @@ task intersect_gtf {
     command <<<
         set -euo pipefail
         echo ~{sep=" " gtf_files} | tr ' ' '\n' | sort | uniq | tr '\n' ' ' > unique_gtf.txt
-        cat unique_gtf.txt
         gtf_iterable=()
         while VAL= read -r line; do
             gtf_iterable+=("$line")
         done < unique_gtf.txt
+
+        echo ${gtf_iterable[@]}
         
         for gtf in "${gtf_iterable[@]}"; do
-            echo "Processing file: $gtf"
             gtf2bed "${gtf}" | awk '{print $2"\t"$3-1"\t"$4"\t"$1"\t"$5}' > "${gtf}.bed"
         done
 
