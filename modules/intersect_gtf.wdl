@@ -9,7 +9,7 @@ task intersect_gtf {
 
     command <<<
         set -euo pipefail
-        echo ~{sep=" " gtf_files} | tr ' ' '\n' | sort | uniq | tr '\n' ' ' > unique_gtf.txt
+        echo ~{sep=" " gtf_files} | tr ' ' '\n' | sort | uniq | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | sed '/^$/d' > unique_gtf.txt
         cat unique_gtf.txt
         gtf_iterable=()
         while IFS= read -r line; do
