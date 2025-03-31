@@ -39,7 +39,7 @@ task intersect_gtf {
     }
 
     runtime {
-        docker: "atex91/gffutils-bedtools:v2.0" 
+        docker: "atex91/gffutils-bedtools:v3.0" 
         memory: "80GB"
         disks: "local-disk ~{disk_space} HDD"
         cpu: "1"
