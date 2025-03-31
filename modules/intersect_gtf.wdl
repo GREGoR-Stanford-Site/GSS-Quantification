@@ -16,7 +16,7 @@ task intersect_gtf {
             gtf_iterable+=("$line")
         done < unique_gtf.txt
         
-        for gtf in $gtf_iterable; do
+        for gtf in "${gtf_iterable[@]"; do
             gtf2bed ${gtf} | awk '{print $2"\t"$3-1"\t"$4"\t"$1"\t"$5}' > ${gtf}.bed
         done
 
