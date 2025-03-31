@@ -2,7 +2,7 @@ version 1.0
 
 task intersect_gtf {
     input {
-        Array[String] gtf_files
+        Array[File] gtf_files
 
         Int disk_space
     }
