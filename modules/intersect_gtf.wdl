@@ -21,7 +21,7 @@ task intersect_gtf {
         done
 
         #initialize intersected bed
-        bedtools intersect -a ${gtf_iterable[0]}.bed -b ${gtf_iterable[1]}.bed -u -f 0.8 > intersected.bed
+        bedtools intersect -a "${gtf_iterable[0]}.bed" -b "${gtf_iterable[1]}.bed" -u -f 0.8 > intersected.bed
 
         #Iterate through remaining bed files
         for ((i=2; i<${#gtf_iterable[@]}; i++)); do
