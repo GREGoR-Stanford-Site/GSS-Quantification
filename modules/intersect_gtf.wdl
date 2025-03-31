@@ -17,7 +17,7 @@ task intersect_gtf {
         done < unique_gtf.txt
         
         for gtf in "${gtf_iterable[@]}"; do
-            gtf2bed ${gtf} | awk '{print $2"\t"$3-1"\t"$4"\t"$1"\t"$5}' > ${gtf}.bed
+            gtf2bed "${gtf}" | awk '{print $2"\t"$3-1"\t"$4"\t"$1"\t"$5}' > "${gtf}.bed"
         done
 
         #initialize intersected bed
@@ -25,7 +25,7 @@ task intersect_gtf {
 
         #Iterate through remaining bed files
         for ((i=2; i<${#gtf_iterable[@]}; i++)); do
-            bedtools intersect -a ${gtf_iterable[i]}.bed -b intersected.bed -u -f 0.8 > temp.bed
+            bedtools intersect -a "${gtf_iterable[i]}.bed" -b intersected.bed -u -f 0.8 > temp.bed
             mv temp.bed intersected.bed
         done
 
