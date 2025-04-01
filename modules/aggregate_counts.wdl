@@ -10,7 +10,7 @@ task aggregate {
     }
 
     command <<<
-        python3 ../utils/aggregate_counts.py -c ~{sep=" " counts} -s ~{sep=" " SID} -b ~{bed}
+        python3 /usr/local/bin/aggregate_counts.py -c ~{sep=" " counts} -s ~{sep=" " SID} -b ~{bed}
     >>>
 
     output {
@@ -18,7 +18,7 @@ task aggregate {
     }
 
     runtime {
-        docker: "quay.io/biocontainers/pandas:0.23.4--py36hf8a1672_0"
+        docker: "atex91/aggregate_counts:v1.0"
         memory: "100GB"
         disks: "local-disk ~{disk_space} HDD"
         cpus: "1"
