@@ -18,7 +18,7 @@ task aggregate {
     }
 
     runtime {
-        docker: "atex91/aggregate_counts:v1.0"
+        docker: "atex91/aggregate_counts:v2.0"
         memory: "100GB"
         disks: "local-disk ~{disk_space} HDD"
         cpus: "1"
