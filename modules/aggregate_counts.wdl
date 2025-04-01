@@ -10,8 +10,8 @@ task aggregate {
     }
 
     command <<<
-        FILES=~{sep=" " counts}
-        SIDs=~{sep=" " SID}
+        FILES="~{sep=" " counts}"
+        SIDs="~{sep=" " SID}"
         python3 ../utils/aggregate_counts.py -c ${FILES} -s ${SIDs} -b ~{bed}
     >>>
 
