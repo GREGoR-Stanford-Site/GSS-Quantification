@@ -41,3 +41,6 @@ if __name__ == '__main__':
         type=str,
         help="bed file with the overlapping gene set between all annotations used for quantification"
     )
+
+    args = parser.parse_args()
+    main(args)
