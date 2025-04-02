@@ -1,5 +1,6 @@
 import argparse
 import pandas as pd
+import os
 
 def main(command_args: argparse.Namespace):
     bed = pd.read_csv(command_args.bed, sep="\t", names=["Chromosome", "Start", "End", "Gene", "Length", "Strand"])
@@ -10,6 +11,7 @@ def main(command_args: argparse.Namespace):
         new_df.index = new_df['ENSG']
         new_df.drop(columns=['ENSG', 'HGNC'], inplace=True)
         df[sid] = new_df[sid]
+    print("Writing output to:", os.path.abspath("counts_table.tsv"))
     df.to_csv("counts_table.tsv", sep="\t")
 
 if __name__ == '__main__':
