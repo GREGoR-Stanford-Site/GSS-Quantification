@@ -19,7 +19,7 @@ task cram_to_bam {
     }
 
     runtime {
-        docker: "us.gcr.io/broad-dsde-methods/samtoolscloud"
+        docker: "quay.io/biocontainers/samtools:1.3.1--h60f3df9_12"
         memory: "32GB"
         disks: "local-disk ~{disk_space} HDD"
         cpu: "7"
